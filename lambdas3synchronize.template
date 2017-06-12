@@ -2,6 +2,14 @@
   "AWSTemplateFormatVersion": "2010-09-09",
   "Description": "",
   "Resources": {
+    "S3BucketforSynchronization": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+
+        "AccessControl": "BucketOwnerFullControl"
+
+      }
+    },
     "LambdaPolicy": {
       "Type": "AWS::IAM::Policy",
       "Properties": {
@@ -12,7 +20,8 @@
               "Action": [
                 "logs:CreateLogGroup",
                 "logs:CreateLogStream",
-                "logs:PutLogEvents"
+                "logs:PutLogEvents",
+                "ssm:SendCommand"
               ],
               "Resource": "*"
             }
@@ -51,9 +60,50 @@
       "Type": "AWS::Lambda::Function",
       "Properties": {
         "Code": {
-          "S3Bucket": "temp-rax-bucket-001",
-          "S3Key": "lambda_function.js.zip"
-        },
+  "ZipFile": {
+    "Fn::Join": [
+      "",
+      [
+        "var aws = require('aws-sdk');","\n",
+        "var ssm = new aws.SSM();","\n",
+        "console.log('Loading function');","\n",
+        "","\n",
+        "exports.handler = function(event, context, callback) {","\n",
+        "var s3bucket = event.Records[0].s3.bucket.name;","\n",
+        "var s3object = event.Records[0].s3.object.key;","\n",
+        "console.log('value1 = event.Records[0].s3.bucket.name');","\n",
+        "callback(null, s3bucket);","\n",
+        "","\n",
+        "var params = {","\n",
+        "DocumentName: '", {"Ref":"SSMDocument"},"', /* required */","\n",
+        "InstanceIds: [ /* required */","\n",
+        "'",
+        "InstanceID",
+        "'","\n",
+        "/* more items */","\n",
+        " ],","\n",
+        "Comment: 'Synchronizing S3 Bucket',","\n",
+        "Parameters: {","\n",
+        "S3Bucket: [","\n",
+        "s3bucket,","\n",
+        "/* more items */","\n",
+        " ],","\n",
+        " Directory:[","\n",
+        "'/home/s3sync',","\n",
+        "]","\n",
+        "/* anotherKey: ... */","\n",
+        " },","\n",
+        " TimeoutSeconds: 60","\n",
+        "};","\n",
+        "ssm.sendCommand(params, function(err, data) {","\n",
+        "if (err) console.log(err, err.stack); // an error occurred","\n",
+        "else     console.log(data);           // successful response","\n",
+        "});","\n",
+        "};","\n"
+      ]
+    ]
+  }
+},
         "Description": "Runs an SSM document in response to an S3 upload event",
         "Handler": "index.handler",
         "Role": {
@@ -63,6 +113,42 @@
           ]
         },
         "Runtime": "nodejs4.3"
+      }
+    },
+    "SSMDocument": {
+      "Type": "AWS::SSM::Document",
+      "Properties": {
+        "Content": {
+          "schemaVersion": "1.2",
+          "description": "Sync an S3 Bucket with to local directory",
+          "parameters": {
+            "S3Bucket": {
+              "type": "String",
+              "description": "The S3 Bucket to sync"
+            },
+            "Directory": {
+              "type": "String",
+              "description": "The local directory to Synchronize to the S3 Bucket",
+              "default": "/home/s3sync"
+            }
+          },
+          "runtimeConfig": {
+            "aws:runShellScript": {
+              "properties": [
+                {
+                  "runCommand": [
+                    "#!/bin/bash",
+                    "S3_ENDPOINT='s3://'{{S3Bucket}}",
+                    "echo {{S3Bucket}}",
+                    "echo $S3_ENDPOINT",
+                    "mkdir -p {{Directory}}",
+                    "aws s3 sync $S3_ENDPOINT {{Directory}}"
+                  ]
+                }
+              ]
+            }
+          }
+        }
       }
     }
   }

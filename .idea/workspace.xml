@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="96e356cb-4466-47a6-b8fd-aa8ee3803ad7" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lambdas3synchronize.template" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lambdas3synchronize_old.template" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lambdas3synchronize.template" afterPath="$PROJECT_DIR$/lambdas3synchronize.template" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -15,12 +16,33 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="lambdas3synchronize.template" pinned="false" current-in-tab="true">
+      <file leaf-file-name="lambdas3synchronize.template" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lambdas3synchronize.template">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="656">
-              <caret line="68" column="1" lean-forward="false" selection-start-line="68" selection-start-column="1" selection-end-line="68" selection-end-column="1" />
-              <folding />
+            <state relative-caret-position="105">
+              <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+              <folding>
+                <element signature="n#!!block;n#LambdaFunction#0;n#!!block;n#Resources#0;n#!!top" expanded="false" />
+                <element signature="n#!!block;n#SSMDocument#0;n#!!block;n#Resources#0;n#!!top" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="lambdas3synchronize_old.template" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/lambdas3synchronize_old.template">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="518">
+              <caret line="911" column="41" lean-forward="false" selection-start-line="911" selection-start-column="41" selection-end-line="911" selection-end-column="41" />
+              <folding>
+                <element signature="n#!!block;n#isImageId#0;n#!!block;n#Conditions#0;n#!!top" expanded="false" />
+                <element signature="n#!!block;n#LambdaFunction#0;n#!!block;n#Resources#0;n#!!top" expanded="false" />
+                <element signature="n#!!block;n#LambdaExecutionRole#0;n#!!block;n#Resources#0;n#!!top" expanded="false" />
+                <element signature="n#!!block;n#CloudFormationLogs#0;n#!!block;n#Resources#0;n#!!top" expanded="false" />
+                <element signature="n#!!block;n#InstanceRole#0;n#!!block;n#Resources#0;n#!!top" expanded="false" />
+                <element signature="n#!!block;n#InstanceRolePolicies#0;n#!!block;n#Resources#0;n#!!top" expanded="false" />
+                <element signature="n#!!block;n#InstanceRoleInstanceProfile#0;n#!!block;n#Resources#0;n#!!top" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -34,6 +56,12 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>LambdaS3Bucket</find>
+      <find>LambdaS3Key</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -41,6 +69,7 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/lambdas3synchronize.template" />
+        <option value="$PROJECT_DIR$/lambdas3synchronize_old.template" />
       </list>
     </option>
   </component>
@@ -219,9 +248,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lambdas3synchronize.template">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="656">
-          <caret line="68" column="1" lean-forward="false" selection-start-line="68" selection-start-column="1" selection-end-line="68" selection-end-column="1" />
-          <folding />
+        <state relative-caret-position="105">
+          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!block;n#LambdaFunction#0;n#!!block;n#Resources#0;n#!!top" expanded="false" />
+            <element signature="n#!!block;n#SSMDocument#0;n#!!block;n#Resources#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lambdas3synchronize_old.template">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="518">
+          <caret line="911" column="41" lean-forward="false" selection-start-line="911" selection-start-column="41" selection-end-line="911" selection-end-column="41" />
+          <folding>
+            <element signature="n#!!block;n#isImageId#0;n#!!block;n#Conditions#0;n#!!top" expanded="false" />
+            <element signature="n#!!block;n#LambdaFunction#0;n#!!block;n#Resources#0;n#!!top" expanded="false" />
+            <element signature="n#!!block;n#LambdaExecutionRole#0;n#!!block;n#Resources#0;n#!!top" expanded="false" />
+            <element signature="n#!!block;n#CloudFormationLogs#0;n#!!block;n#Resources#0;n#!!top" expanded="false" />
+            <element signature="n#!!block;n#InstanceRole#0;n#!!block;n#Resources#0;n#!!top" expanded="false" />
+            <element signature="n#!!block;n#InstanceRolePolicies#0;n#!!block;n#Resources#0;n#!!top" expanded="false" />
+            <element signature="n#!!block;n#InstanceRoleInstanceProfile#0;n#!!block;n#Resources#0;n#!!top" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
